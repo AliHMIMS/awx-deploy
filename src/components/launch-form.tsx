@@ -94,8 +94,11 @@ export function LaunchForm({
         toast.title = `Launched #${job.id}`;
       }
       toast.primaryAction = { title: "Open in AWX", onAction: () => open(jobUrl(job.id)) };
-      onLaunched?.();
-      pop();
+      // Only leave the form on a clean launch; if AWX ignored variables, stay so the user can correct.
+      if (ignored.length === 0) {
+        onLaunched?.();
+        pop();
+      }
     } catch (e) {
       toast.style = Toast.Style.Failure;
       toast.title = "Launch failed";
