@@ -27,3 +27,7 @@ pnpm dev      # ray develop
 pnpm lint     # ray lint
 pnpm build    # ray build
 ```
+
+## Disclaimer
+
+This is an unofficial, community-built extension. It is **not affiliated with, endorsed by, or sponsored by** AWX, the Ansible project, or Red Hat, Inc. "AWX" and "Ansible" are trademarks of Red Hat, Inc., used here only to describe what the extension interacts with.
