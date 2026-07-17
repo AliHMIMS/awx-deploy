@@ -91,6 +91,31 @@ export interface UnifiedJob {
   };
 }
 
+/** A completed/ongoing run of a workflow job template. */
+export interface WorkflowJob {
+  id: number;
+  name: string;
+  status: string;
+  started: string | null;
+  finished: string | null;
+  elapsed: number;
+  created: string;
+  launch_type?: string;
+  summary_fields?: {
+    workflow_job_template?: { id: number; name: string };
+    created_by?: { id: number; username: string };
+  };
+}
+
+/** A node within a workflow *run* — carries the actual spawned job and its timing. */
+export interface WorkflowJobNode {
+  id: number;
+  summary_fields?: {
+    job?: { id: number; name: string; status: string; elapsed: number };
+    unified_job_template?: { id: number; name: string };
+  };
+}
+
 export interface LaunchResponse {
   id: number;
   job: number;
@@ -247,6 +272,25 @@ async function describeError(res: Response): Promise<string> {
   }
   const prefix = `AWX request failed (${res.status} ${res.statusText})`;
   return detail ? `${prefix}: ${detail}` : prefix;
+}
+
+/** Fetch every page of a paginated list endpoint, following `next` (bounded by `max`). */
+export async function fetchAll<T>(url: string, max = 1000): Promise<T[]> {
+  const { awxUrl } = getPreferences();
+  const origin = awxUrl.trim().replace(/\/+$/, "");
+  const out: T[] = [];
+  let next: string | null = url;
+  while (next && out.length < max) {
+    const full = next.startsWith("http") ? next : `${origin}${next}`;
+    const res = await fetch(full, { headers: authHeaders() });
+    if (!res.ok) {
+      throw new Error(await describeError(res));
+    }
+    const page = (await res.json()) as Paginated<T>;
+    out.push(...page.results);
+    next = page.next;
+  }
+  return out;
 }
 
 export function statusColor(status?: string): Color {

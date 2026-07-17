@@ -27,6 +27,13 @@
       "subtitle": "AWX",
       "description": "View currently running AWX jobs and cancel them.",
       "mode": "view"
+    },
+    {
+      "name": "workflow-history",
+      "title": "Workflow History",
+      "subtitle": "AWX",
+      "description": "Workflow templates run in the last 7 days, with timing and usage stats.",
+      "mode": "view"
     }
   ],
   "preferences": [
