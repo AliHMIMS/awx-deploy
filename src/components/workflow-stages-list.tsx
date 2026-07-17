@@ -1,7 +1,7 @@
 import { Action, ActionPanel, Color, Icon, Keyboard, List, Toast, showToast } from "@raycast/api";
 import { getFavicon, useFetch } from "@raycast/utils";
 import { LaunchForm } from "./launch-form";
-import { confirmAndLaunch } from "./launch";
+import { confirmAndLaunch } from "../common/launch";
 import {
   Paginated,
   WorkflowJobTemplate,
@@ -16,7 +16,7 @@ import {
   templateWebUrl,
   workflowJobWebUrl,
   workflowTemplateWebUrl,
-} from "./awx";
+} from "../common/awx";
 
 export function WorkflowStagesList({ workflow }: { workflow: WorkflowJobTemplate }) {
   const { isLoading, data } = useFetch(

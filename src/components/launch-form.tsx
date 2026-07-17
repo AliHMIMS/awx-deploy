@@ -1,7 +1,7 @@
 import { Action, ActionPanel, Form, Toast, showToast, useNavigation, open } from "@raycast/api";
 import { useFetch } from "@raycast/utils";
 import { useState } from "react";
-import { SurveyQuestion, SurveySpec, authHeaders } from "./awx";
+import { SurveyQuestion, SurveySpec, authHeaders } from "../common/awx";
 
 /**
  * Launch a job template or workflow.

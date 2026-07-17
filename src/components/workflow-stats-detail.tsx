@@ -1,15 +1,8 @@
 import { Action, ActionPanel, Detail, Icon } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
-import {
-  WorkflowJob,
-  WorkflowJobNode,
-  apiBase,
-  fetchAll,
-  formatElapsed,
-  statusColor,
-  workflowTemplateWebUrl,
-} from "./awx";
-import { DurationStats, durationStats, tally } from "./stats";
+import { WorkflowJob, WorkflowJobNode, apiBase, fetchAll, workflowTemplateWebUrl } from "../common/awx";
+import { formatElapsed, statusColor } from "../common/format";
+import { DurationStats, durationStats, tally } from "../common/stats";
 
 const WINDOW_DAYS = 7;
 /** Cap how many runs we drill into for per-stage timing, to bound API calls. */
