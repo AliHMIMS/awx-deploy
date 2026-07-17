@@ -4,13 +4,15 @@
   "title": "AWX Deploy",
   "description": "Browse, launch, and monitor AWX job templates and running jobs.",
   "icon": "extension-icon.png",
-  "author": "Ahmims",
+  "author": "hmims",
   "platforms": [
     "macOS",
     "Windows"
   ],
   "categories": [
-    "Developer Tools"
+    "Developer Tools",
+    "Productivity",
+    "System"
   ],
   "license": "MIT",
   "commands": [
